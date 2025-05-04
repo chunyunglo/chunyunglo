@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>羅俊詠 Chun-Yung (Yong) Lo</title>
+  <style>
+    :root {
+      --transition-speed: 0.4s;
+      --color-bg: #ededd9;
+      --color-text: #54544f;
+      --color-accent: #758369;
+      --color-skill: #eff3e8;
+      --color-section: #fffefd;
+      --color-hover: #e9ede2;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Helvetica Neue", sans-serif;
+      background-color: var(--color-bg);
+      color: var(--color-text);
+      line-height: 1.7;
+      padding: 3rem 1.5rem;
+      transition: all var(--transition-speed) ease;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    header h1 {
+      font-size: 1.8rem;
+      color: var(--color-accent);
+    }
+
+    .toggle {
+      background: var(--color-accent);
+      color: white;
+      padding: 0.5rem 1rem;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+      border-radius: 6px;
+    }
+
+    .section {
+      margin: 4rem auto;
+      max-width: 800px;
+      background-color: white;
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .section:hover {
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+
+
+    .section:hover {
+      transform: translateY(-5px) scale(1.05); /* 輕微向上移動並放大 */
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1); /* 增強陰影效果 */
+    }
+
+
+    .section:nth-of-type(even) {
+      background-color: var(--color-section);
+    }
+
+    h2 {
+      color: var(--color-accent);
+      margin-bottom: 1rem;
+    }
+
+    p {
+      white-space: pre-line;
+      margin-bottom: 1rem;
+    }
+
+    ul {
+      list-style: none;
+      padding-left: 1rem;
+    }
+
+    ul li::before {
+      content: "\2022";
+      color: var(--color-accent);
+      display: inline-block;
+      width: 1em;
+      margin-left: -1em;
+    }
+
+    .contact a {
+      display: block;
+      color: var(--color-accent);
+      text-decoration: none;
+      margin-top: 0.5rem;
+    }
+
+    .skills-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .skill-box {
+      background-color: var(--color-skill);
+      border-radius: 10px;
+      padding: 1rem;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s, background-color 0.3s;
+    }
+
+    .skill-box:hover {
+      transform: translateY(-5px);
+      background-color: var(--color-hover);
+    }
+
+    .skill-title {
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+      color: var(--color-accent);
+    }
+
+    #content {
+      margin-top: 5rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1 id="name">羅俊詠 Chun-Yung (Yong) Lo</h1>
+    <button class="toggle" onclick="toggleLang()">ENGLISH</button>
+  </header>
+
+  <div id="content">
+    <div class="section">
+      <h2>關於我 / About Me</h2>
+      <p id="about"></p>
+    </div>
+
+    <div class="section">
+      <h2>學歷與成就 / Education & Achievements</h2>
+      <p id="education"></p>
+    </div>
+
+    <div class="section">
+      <h2>經歷 / Experience</h2>
+      <p id="experience"></p>
+    </div>
+
+    <div class="section">
+      <h2>技能 / Skills</h2>
+      <div class="skills-container">
+        <div class="skill-box">
+          <div class="skill-title">語言 / Languages</div>
+          <div>中文（母語）、英文（IELTS 7.5 / TOEIC 935）</div>
+        </div>
+        <div class="skill-box">
+          <div class="skill-title">技術 / Technical</div>
+          <div>Python、機器學習（Kaggle）、數據分析</div>
+        </div>
+        <div class="skill-box">
+          <div class="skill-title">研究 / Research</div>
+          <div>實驗設計、文獻閱讀與分析、統計分析</div>
+        </div>
+        <div class="skill-box">
+          <div class="skill-title">軟技能 / Soft Skills</div>
+          <div>團隊合作、溝通、領導、跨文化交流</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section contact">
+      <h2>聯絡方式 / Contact</h2>
+      <a href="mailto:chunyunglo2005@gmail.com">chunyunglo2005@gmail.com</a>
+      <a href="https://www.linkedin.com/in/Chun-Yung-Yong-Lo/" target="_blank">LinkedIn</a>
+    </div>
+  </div>
+
+  <script>
+    const langContent = {
+      zh: {
+        about: `我是羅俊詠 (Chun-Yung Lo)，畢業於國立新竹高級中學，現就讀於國立臺灣大學心理學系。我對人類互動行為有濃厚興趣，希望結合心理學知識，深入了解人與人、人與機器間的互動過程。
+在學術上，我保持優異的成績表現，獲得書卷獎，學年度平均GPA達4.24/4.3。同時，我也積極參與研究工作，目前在CHEN Lab擔任研究助理，研究興趣集中在對話研究、大型語言模型與互動心智。<p>
+除了學術研究外，我也熱衷於教育推廣工作，曾在EdYouth育才推廣組擔任組員，並在心理學系系學會擔任學術部部長，展現良好的溝通合作能力。`,
+        education: `國立臺灣大學心理學系：書卷獎，GPA 4.24/4.3，系訂必修GPA 4.29/4.3。
+國立新竹高級中學：市長獎、智育獎、社會科學獎、辛志平校長獎學金。`,
+        experience: `CHEN Lab 研究助理與實習生，參與對話與大型語言模型研究；
+東京大學Early Language Acquisition課程；
+竹苗地區英文學習研究；
+人民幣國際化探究；
+心理學系學會部長與EdYouth講座經驗；
+參與Global Vision跨文化交流；
+STEM機器人大賽全國賽第一名。`
+      },
+      en: {
+        about: `I’m Chun-Yung (Yong) Lo, currently majoring in Psychology at National Taiwan University. Fascinated by human interaction, I aim to bridge psychology with human-computer interaction and large language models.
+I have maintained excellent academic performance (GPA 4.24/4.3), receiving the Academic Excellence Award.
+I am a research assistant at the CHEN Lab, focusing on dialogue research and interactional cognition.
+I also engage in educational outreach through EdYouth and have led academic initiatives within the NTU Psychology Department Student Association.`,
+        education: `National Taiwan University, Department of Psychology: Academic Excellence Award, GPA 4.24/4.3 (Department Required Courses: 4.29/4.3).
+Hsinchu Senior High School: Mayor's Award, Principal Hsin Zhiping Scholarship, Scholastic and Social Sciences Awards.`,
+        experience: `Research Assistant & Intern at CHEN Lab (dialogue and LLM research);
+Summer course at University of Tokyo on early language acquisition;
+Independent research on English learning in high school;
+Essay on RMB internationalization;
+Director of the Academic Dept at NTU;
+Education outreach with EdYouth (talks and collaborations);
+Cultural exchange with Korea, Japan, Vietnam via Global Vision;
+1st place in 2020 Taiwan Youth Robotics Competition.`
+      }
+    };
+
+    let currentLang = 'zh';
+
+    function toggleLang() {
+      currentLang = currentLang === 'zh' ? 'en' : 'zh';
+      document.querySelector('.toggle').textContent = currentLang === 'zh' ? 'ENGLISH' : '中文';
+      document.getElementById('about').textContent = langContent[currentLang].about;
+      document.getElementById('education').textContent = langContent[currentLang].education;
+      document.getElementById('experience').textContent = langContent[currentLang].experience;
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      toggleLang();
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.1
+      });
+
+      document.querySelectorAll('.section').forEach(section => {
+        observer.observe(section);
+      });
+    });
+  </script>
+</body>
+</html>
